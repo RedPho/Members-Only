@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  form(action="", method="post") 
+    label Title: 
+        input(type="text", name="title" placeholder="Title")
+    label Message: 
+      input(type="text", name="message" placeholder="Your Message")
+    input(type="submit", value="Submit")

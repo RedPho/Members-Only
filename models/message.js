@@ -6,8 +6,7 @@ const MessageSchema = new Schema({
   title: { type: String, required: true },
   user: { type: Schema.ObjectId, ref: "User" },
   text: { type: String, required: true },
-  timestamp: { type: Date, default: Date.now },
-  Admin: { type: Boolean }
+  timestamp: { type: Date, default: Date.now }
 });
 
 // Virtual for this book instance URL.

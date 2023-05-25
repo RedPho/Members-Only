@@ -3,3 +3,22 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  if currentUser
+    p Welcome back #{currentUser.username}
+    if !(currentUser.membership_status)
+      p You need to be a club member to see author and date of the messages
+      a(href="/join-club") Join The Club
+    a(href="/new-message") New Message
+    a(href="/log-out") Log out
+  else 
+    a(href="/sign-in") Sign In
+    a(href="/sign-up") Sign Up
+  div.message-container
+    h2 Messages
+    each message in all_messages 
+      div.message
+        div Title: #{message.title}
+        div Message: #{message.text}
+        if currentUser && currentUser.membership_status
+          div Author: #{message.user.username}
+          div Date: #{message.timestamp}
