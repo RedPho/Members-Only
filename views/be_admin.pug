@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= title
+  if currentUser 
+    if err 
+      p= err
+    form(action="", method="post") 
+      label Secret Key: 
+        input(type="password", name="key")
+      input(type="submit", value="Be Admin")

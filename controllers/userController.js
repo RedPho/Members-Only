@@ -1,4 +1,3 @@
-const { body, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/user");
 const bcrypt = require('bcryptjs');
@@ -43,11 +42,25 @@ exports.join_club_get = (req, res, next) => {
 }
 
 exports.join_club_post = asyncHandler(async (req, res, next) => {
-  if (req.body.key == process.env.KEY) {
+  if (req.body.key == process.env.MEMBERSHIP_KEY) {
     await User.findByIdAndUpdate(req.user.id, { membership_status: true }).exec();
   }
   else {
     res.render('join_club', { title: "Join The Club", err: "Key is incorrect" })
+  }
+  res.redirect('/');
+});
+
+exports.be_admin_get = (req, res, next) => {
+  res.render('be_admin', { title: "Be Admin" });
+}
+
+exports.be_admin_post = asyncHandler(async (req, res, next) => {
+  if (req.body.key == process.env.ADMIN_KEY) {
+    await User.findByIdAndUpdate(req.user.id, { admin: true }).exec();
+  }
+  else {
+    res.render('be_admin', { title: "Be Admin", err: "Key is incorrect" })
   }
   res.redirect('/');
 });

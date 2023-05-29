@@ -8,6 +8,9 @@ block content
     if !(currentUser.membership_status)
       p You need to be a club member to see author and date of the messages
       a(href="/join-club") Join The Club
+    if !(currentUser.admin)
+      p You need to be admin to be able to delete messages
+      a(href="/be-admin") Be Admin
     a(href="/new-message") New Message
     a(href="/log-out") Log out
   else 
@@ -22,3 +25,5 @@ block content
         if currentUser && currentUser.membership_status
           div Author: #{message.user.username}
           div Date: #{message.timestamp}
+        if currentUser && currentUser.admin 
+          a(href="/delete/" + message._id) Delete Message

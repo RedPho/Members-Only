@@ -26,10 +26,14 @@ router.get('/log-out', user_controller.log_out);
 router.get('/join-club', user_controller.join_club_get);
 router.post('/join-club', user_controller.join_club_post);
 
+router.get('/be-admin', user_controller.be_admin_get);
+router.post('/be-admin', user_controller.be_admin_post);
+
 
 router.get('/new-message', message_controller.new_message_get);
 router.post('/new-message', message_controller.new_message_post);
 
+router.get('/delete/:id', message_controller.message_delete);
 
 
 module.exports = router;
